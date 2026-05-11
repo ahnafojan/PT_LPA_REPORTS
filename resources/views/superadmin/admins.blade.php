@@ -1,3 +1,13 @@
+@php
+    $accessOptions = ['Laporan Keuangan Bulanan', 'Laporan Kehadiran', 'Semua laporan'];
+
+    $adminRows = [
+        ['name' => 'Andi', 'access' => 'Kehadiran, KWH', 'status' => 'aktif'],
+        ['name' => 'Sari', 'access' => 'Keuangan', 'status' => 'aktif'],
+        ['name' => 'Budi', 'access' => 'Produksi', 'status' => 'nonaktif'],
+    ];
+@endphp
+
 <x-layouts::app :title="__('Manajemen Admin')">
     <div class="grid gap-6 xl:grid-cols-[380px_1fr]">
         <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
@@ -7,7 +17,7 @@
                 <input type="email" placeholder="Email" class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
                 <x-alpine-dropdown
                     name="akses_laporan"
-                    :options="['Laporan Keuangan Bulanan', 'Laporan Kehadiran', 'Semua laporan']" />
+                    :options="$accessOptions" />
                 <button type="button" class="w-full rounded-md bg-[#004D26] px-4 py-3 text-sm font-bold text-white">Tambah Admin</button>
             </form>
         </section>
@@ -25,11 +35,11 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-[#d8edd8]">
-                        @foreach ([['Andi', 'Kehadiran, KWH', 'aktif'], ['Sari', 'Keuangan', 'aktif'], ['Budi', 'Produksi', 'nonaktif']] as $row)
+                        @foreach ($adminRows as $admin)
                             <tr>
-                                <td class="px-4 py-3 font-semibold text-slate-800">{{ $row[0] }}</td>
-                                <td class="px-4 py-3 text-slate-500">{{ $row[1] }}</td>
-                                <td class="px-4 py-3"><x-status-badge :status="$row[2]" /></td>
+                                <td class="px-4 py-3 font-semibold text-slate-800">{{ $admin['name'] }}</td>
+                                <td class="px-4 py-3 text-slate-500">{{ $admin['access'] }}</td>
+                                <td class="px-4 py-3"><x-status-badge :status="$admin['status']" /></td>
                                 <td class="px-4 py-3"><button class="font-bold text-[#004D26]">Reset Password</button></td>
                             </tr>
                         @endforeach

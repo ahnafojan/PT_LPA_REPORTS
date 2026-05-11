@@ -22,6 +22,10 @@
         </p>
 
         @foreach ($menuItems as $item)
+            @php
+                $isActive = request()->routeIs($item['active']);
+            @endphp
+
             <a
                 href="{{ route($item['route']) }}"
                 wire:navigate
@@ -29,13 +33,13 @@
                 @click="sidebarOpen = false"
                 @class([
                     'group flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold transition',
-                    'bg-[#e8f7e6] text-[#004D26] ring-1 ring-[#c9e9c8]' => request()->routeIs($item['active']),
-                    'text-slate-600 hover:bg-[#f2faf0] hover:text-[#004D26]' => ! request()->routeIs($item['active']),
+                    'bg-[#e8f7e6] text-[#004D26] ring-1 ring-[#c9e9c8]' => $isActive,
+                    'text-slate-600 hover:bg-[#f2faf0] hover:text-[#004D26]' => ! $isActive,
                 ])>
                 <span @class([
                     'grid h-8 w-8 shrink-0 place-items-center rounded-md transition',
-                    'bg-[#004D26] text-white' => request()->routeIs($item['active']),
-                    'bg-white text-[#004D26] ring-1 ring-[#d8edd8] group-hover:bg-[#e8f7e6]' => ! request()->routeIs($item['active']),
+                    'bg-[#004D26] text-white' => $isActive,
+                    'bg-white text-[#004D26] ring-1 ring-[#d8edd8] group-hover:bg-[#e8f7e6]' => ! $isActive,
                 ])>
                     <x-sidebar-icon :name="$item['icon']" class="h-4.5 w-4.5" />
                 </span>
@@ -45,46 +49,62 @@
     </nav>
 
     <div class="mt-4 border-t border-[#dcefd9] pt-4 dark:border-slate-800">
-        <a
-            href="{{ route('profile', ['area' => $isSuperadminArea ? 'superadmin' : 'admin']) }}"
-            @click="sidebarOpen = false"
-            @class([
-                'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold ring-1 transition',
-                'bg-[#e8f7e6] text-[#004D26] ring-[#c9e9c8]' => request()->routeIs('profile'),
-                'bg-white text-slate-600 ring-[#d8edd8] hover:bg-[#f7fbf6] hover:text-[#004D26]' => ! request()->routeIs('profile'),
-            ])
-            wire:navigate>
-            <span @class([
-                'grid h-8 w-8 shrink-0 place-items-center rounded-md ring-1 transition',
-                'bg-[#004D26] text-white ring-[#004D26]' => request()->routeIs('profile'),
-                'bg-[#f7fbf6] text-[#004D26] ring-[#d8edd8]' => ! request()->routeIs('profile'),
-            ])>
-                <x-sidebar-icon name="profile" class="h-4.5 w-4.5" />
-            </span>
-            <span :class="sidebarCollapsed ? 'lg:hidden' : ''">Profile</span>
-        </a>
-        <button
-            type="button"
-            @click="toggleDarkMode()"
-            :title="darkMode ? 'Mode terang' : 'Mode gelap'"
-            class="mt-2 flex w-full items-center gap-3 rounded-md bg-white px-3 py-2 text-left text-sm font-semibold text-slate-600 ring-1 ring-[#d8edd8] transition hover:bg-[#f7fbf6] hover:text-[#004D26] dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800 dark:hover:text-emerald-300">
-            <span class="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-[#f7fbf6] text-[#004D26] ring-1 ring-[#d8edd8] dark:bg-slate-800 dark:text-emerald-300 dark:ring-slate-700">
-                <x-sidebar-icon x-show="! darkMode" name="moon" class="h-4.5 w-4.5" />
-                <x-sidebar-icon x-cloak x-show="darkMode" name="sun" class="h-4.5 w-4.5" />
-            </span>
-            <span :class="sidebarCollapsed ? 'lg:hidden' : ''" x-text="darkMode ? 'Light mode' : 'Dark mode'"></span>
-        </button>
-        <form id="sidebar-logout-form" method="POST" action="{{ route('logout') }}" class="mt-2" x-data="{ confirmLogoutOpen: false }">
+        @php
+            $user = auth()->user();
+            $profilePhotoUrl = $user?->profilePhotoUrl();
+            $userName = $user?->name ?? 'User';
+            $userInitials = strtoupper($user?->initials() ?: 'U');
+            $userRoleLabel = $user?->role?->label() ?? $sectionTitle;
+        @endphp
+
+        <form id="sidebar-logout-form" method="POST" action="{{ route('logout') }}" x-data="{ confirmLogoutOpen: false }">
             @csrf
-            <button
-                type="button"
-                @click="confirmLogoutOpen = true"
-                class="flex w-full items-center gap-3 rounded-md bg-white px-3 py-2 text-left text-sm font-semibold text-slate-600 ring-1 ring-[#d8edd8] transition hover:bg-[#f7fbf6] hover:text-[#004D26] dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800 dark:hover:text-emerald-300">
-                <span class="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-[#f7fbf6] text-[#004D26] ring-1 ring-[#d8edd8] dark:bg-slate-800 dark:text-emerald-300 dark:ring-slate-700">
+
+            <div
+                class="flex items-center gap-2 rounded-md bg-white p-2 transition dark:bg-slate-900"
+                :class="sidebarCollapsed ? 'lg:justify-center lg:bg-transparent lg:p-0 lg:ring-0 lg:dark:bg-transparent' : ''">
+                <a
+                    href="{{ route('profile', ['area' => $profileArea]) }}"
+                    @click="sidebarOpen = false"
+                    title="{{ $userName }}"
+                    class="flex min-w-0 flex-1 items-center gap-3 rounded-md p-1.5 transition hover:bg-[#f7fbf6] dark:hover:bg-slate-800"
+                    :class="sidebarCollapsed ? 'lg:hidden' : ''"
+                    wire:navigate>
+                    @if ($profilePhotoUrl)
+                        <span
+                            class="relative block shrink-0 overflow-hidden rounded-full ring-1 ring-[#d8edd8] dark:ring-slate-700"
+                            style="width: 2.75rem; height: 2.75rem; border-radius: 9999px;">
+                            <img
+                                src="{{ $profilePhotoUrl }}"
+                                alt="{{ $userName }}"
+                                width="44"
+                                height="44"
+                                class="absolute inset-0 object-cover"
+                                style="width: 100%; height: 100%; border-radius: 9999px;">
+                        </span>
+                    @else
+                        <span
+                            class="grid shrink-0 place-items-center rounded-full bg-slate-900 text-sm font-bold text-white ring-1 ring-slate-800 dark:bg-emerald-500 dark:text-slate-950 dark:ring-emerald-400"
+                            style="width: 2.75rem; height: 2.75rem; border-radius: 9999px;">
+                            {{ $userInitials }}
+                        </span>
+                    @endif
+
+                    <span class="min-w-0" :class="sidebarCollapsed ? 'lg:hidden' : ''">
+                        <span class="block truncate text-sm font-semibold leading-tight text-slate-900 dark:text-slate-100">{{ $userName }}</span>
+                        <span class="mt-0.5 block truncate text-xs font-medium text-slate-500 dark:text-slate-400">{{ $userRoleLabel }}</span>
+                    </span>
+                </a>
+
+                <button
+                    type="button"
+                    @click="confirmLogoutOpen = true"
+                    title="Logout"
+                    class="grid h-10 w-10 shrink-0 place-items-center rounded-md text-slate-500 ring-1 ring-[#d8edd8] transition hover:bg-[#f7fbf6] hover:text-[#004D26] dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800 dark:hover:text-emerald-300"
+                    :class="sidebarCollapsed ? 'lg:h-11 lg:w-11' : ''">
                     <x-sidebar-icon name="logout" class="h-4.5 w-4.5" />
-                </span>
-                <span :class="sidebarCollapsed ? 'lg:hidden' : ''">Logout</span>
-            </button>
+                </button>
+            </div>
 
             <template x-teleport="body">
                 <div

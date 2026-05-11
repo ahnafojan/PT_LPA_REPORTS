@@ -1,31 +1,15 @@
 @php
-$isSuperadminArea = request()->routeIs('superadmin.*')
-    || request('area') === 'superadmin'
-    || (request()->routeIs('profile') && auth()->user()?->isSuperAdmin());
+    $isSuperadminArea = request()->routeIs('superadmin.*')
+        || request('area') === 'superadmin'
+        || (request()->routeIs('profile') && auth()->user()?->isSuperAdmin());
 
-$adminMenuItems = [
-    ['label' => 'Dashboard', 'route' => 'dashboard', 'active' => 'dashboard', 'icon' => 'dashboard'],
-    ['label' => 'Input Laporan', 'route' => 'reports.input', 'active' => 'reports.input', 'icon' => 'input'],
-    ['label' => 'Daftar Laporan Saya', 'route' => 'reports.mine', 'active' => 'reports.mine', 'icon' => 'list'],
-    ['label' => 'Riwayat Laporan', 'route' => 'reports.history', 'active' => 'reports.history', 'icon' => 'archive'],
-    ['label' => 'Notifikasi', 'route' => 'notifications', 'active' => 'notifications', 'icon' => 'bell'],
-    ['label' => 'Laporan & Export', 'route' => 'reports.export', 'active' => 'reports.export', 'icon' => 'export'],
-];
+    $navigationArea = $isSuperadminArea ? 'superadmin' : 'admin';
+    $navigation = config("navigation.areas.{$navigationArea}");
 
-$superadminMenuItems = [
-    ['label' => 'Dashboard', 'route' => 'superadmin.dashboard', 'active' => 'superadmin.dashboard', 'icon' => 'dashboard'],
-    ['label' => 'Manajemen Jenis Laporan', 'route' => 'superadmin.report-types', 'active' => 'superadmin.report-types', 'icon' => 'report-types'],
-    ['label' => 'Manajemen Field / Kolom', 'route' => 'superadmin.fields', 'active' => 'superadmin.fields', 'icon' => 'form-builder'],
-    ['label' => 'Manajemen Admin', 'route' => 'superadmin.admins', 'active' => 'superadmin.admins', 'icon' => 'users'],
-    ['label' => 'Monitoring Laporan', 'route' => 'superadmin.monitoring', 'active' => 'superadmin.monitoring', 'icon' => 'monitor'],
-    ['label' => 'Pengaturan Periode', 'route' => 'superadmin.periods', 'active' => 'superadmin.periods', 'icon' => 'calendar'],
-    ['label' => 'Laporan & Export', 'route' => 'superadmin.exports', 'active' => 'superadmin.exports', 'icon' => 'export'],
-    ['label' => 'Log Aktivitas', 'route' => 'superadmin.logs', 'active' => 'superadmin.logs', 'icon' => 'activity'],
-];
-
-$menuItems = $isSuperadminArea ? $superadminMenuItems : $adminMenuItems;
-$brandRoute = $isSuperadminArea ? 'superadmin.dashboard' : 'dashboard';
-$sectionTitle = $isSuperadminArea ? 'Super Admin' : 'Admin';
+    $menuItems = $navigation['items'];
+    $brandRoute = $navigation['brand_route'];
+    $profileArea = $navigation['profile_area'];
+    $sectionTitle = $navigation['title'];
 @endphp
 
 <!DOCTYPE html>
@@ -41,8 +25,11 @@ $sectionTitle = $isSuperadminArea ? 'Super Admin' : 'Admin';
         sidebarCollapsed: localStorage.getItem('lpa-sidebar-collapsed') === 'true',
         darkMode: document.documentElement.classList.contains('dark'),
         toggleDarkMode() {
-            this.darkMode = ! this.darkMode;
-            localStorage.setItem('lpa-theme', this.darkMode ? 'dark' : 'light');
+            const theme = this.darkMode ? 'light' : 'dark';
+            this.darkMode = theme === 'dark';
+            localStorage.setItem('flux.appearance', theme);
+            window.Flux?.applyAppearance?.(theme);
+            window.Flux && (window.Flux.appearance = theme);
             document.documentElement.classList.toggle('dark', this.darkMode);
         },
     }"
@@ -60,58 +47,10 @@ $sectionTitle = $isSuperadminArea ? 'Super Admin' : 'Admin';
             class="fixed inset-0 z-30 bg-slate-900/35 lg:hidden"
             aria-label="Tutup sidebar"></button>
 
-        @include('layouts.app.sidebar')
+        @include('partials.sidebar')
 
         <div class="min-w-0">
-            <header class="sticky top-0 z-20 border-b border-[#e4f1e2] bg-white/85 px-4 py-3 backdrop-blur dark:border-slate-800 dark:bg-slate-950/85 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between gap-4">
-                    <div class="flex min-w-0 items-center gap-3">
-                        <button
-                            type="button"
-                            @click="sidebarOpen = true"
-                            class="grid h-10 w-10 place-items-center rounded-md bg-[#f7fbf6] text-[#004D26] ring-1 ring-[#d8edd8] transition hover:bg-[#eef8ec] dark:bg-slate-900 dark:text-emerald-300 dark:ring-slate-700 dark:hover:bg-slate-800 lg:hidden"
-                            aria-label="Buka sidebar">
-                            <x-sidebar-icon name="menu" class="h-5 w-5" />
-                        </button>
-
-                        <button
-                            type="button"
-                            @click="sidebarCollapsed = ! sidebarCollapsed"
-                            class="hidden h-10 w-10 place-items-center rounded-md bg-[#f7fbf6] text-[#004D26] ring-1 ring-[#d8edd8] transition hover:bg-[#eef8ec] dark:bg-slate-900 dark:text-emerald-300 dark:ring-slate-700 dark:hover:bg-slate-800 lg:grid"
-                            aria-label="Toggle sidebar">
-                            <x-sidebar-icon name="menu" class="h-5 w-5" />
-                        </button>
-
-                        <div class="min-w-0">
-                            <h1 class="truncate text-xl font-semibold text-slate-900 dark:text-slate-100">{{ $title ?? 'Dashboard' }}</h1>
-                        </div>
-                    </div>
-
-                    <div class="hidden flex-col items-end gap-0.5 md:flex">
-                        <span class="text-sm font-semibold text-slate-800 dark:text-slate-200">
-                            {{ now()->translatedFormat('l, d M Y') }}
-                        </span>
-                        <span
-                            class="text-xs text-slate-400 tabular-nums dark:text-slate-500"
-                            x-data="{
-                                time: '',
-                                tick() {
-                                    this.time = new Intl.DateTimeFormat('id-ID', {
-                                        hour: '2-digit',
-                                        minute: '2-digit',
-                                        second: '2-digit',
-                                        hour12: false,
-                                    }).format(new Date());
-                                },
-                                init() {
-                                    this.tick();
-                                    setInterval(() => this.tick(), 1000);
-                                },
-                            }"
-                            x-text="time"></span>
-                    </div>
-                </div>
-            </header>
+            @include('partials.app-header')
 
             <main class="p-4 sm:p-6 lg:p-8">
                 <flux:main>
