@@ -92,6 +92,14 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 6.75V5.25a1.5 1.5 0 0 1 1.5-1.5h7v16.5h-7a1.5 1.5 0 0 1-1.5-1.5v-1.5M4.25 12h10M7.75 8.5 4.25 12l3.5 3.5" />
             @break
 
+        @case('moon')
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.25 14.25A7.25 7.25 0 0 1 9.75 4.75 7.25 7.25 0 1 0 19.25 14.25Z" />
+            @break
+
+        @case('sun')
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.75a4.25 4.25 0 1 1 0 8.5 4.25 4.25 0 0 1 0-8.5ZM12 3.75v1.5M12 18.75v1.5M20.25 12h-1.5M5.25 12h-1.5M17.85 6.15l-1.1 1.1M7.25 16.75l-1.1 1.1M17.85 17.85l-1.1-1.1M7.25 7.25l-1.1-1.1" />
+            @break
+
         @case('collapse')
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.25 5.75 9 12l6.25 6.25M4.75 5.75v12.5" />
             @break

@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/login')->name('home');
 
 Route::middleware(['auth', 'no.auth.cache', 'role:admin,super_admin'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::view('reports/input', 'reports.input')->name('reports.input');
-    Route::view('reports/input/keuangan-bulanan', 'reports.forms.keuangan-bulanan')->name('reports.forms.keuangan-bulanan');
-    Route::view('reports/saya', 'reports.mine')->name('reports.mine');
-    Route::view('reports/riwayat', 'reports.history')->name('reports.history');
-    Route::view('reports/export', 'reports.export')->name('reports.export');
+    Route::view('dashboard', 'admin.dashboard')->name('dashboard');
+    Route::view('reports/input', 'admin.input')->name('reports.input');
+    Route::view('reports/input/keuangan-bulanan', 'admin.forms.keuangan-bulanan')->name('reports.forms.keuangan-bulanan');
+    Route::view('reports/saya', 'admin.mine')->name('reports.mine');
+    Route::view('reports/riwayat', 'admin.history')->name('reports.history');
+    Route::view('reports/export', 'admin.export')->name('reports.export');
     Route::view('notifications', 'notifications.index')->name('notifications');
-    Route::view('profile', 'profile')->name('profile');
+    Route::view('profile', 'admin.profile')->name('profile');
     Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
     Route::post('profile/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo.update');

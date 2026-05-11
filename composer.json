@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/livewire-starter-kit",
+    "name": "pt-lpa/reports",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "Reports management application for PT LPA.",
     "keywords": [
         "laravel",
         "framework"
