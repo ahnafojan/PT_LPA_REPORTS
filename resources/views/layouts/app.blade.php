@@ -1,7 +1,8 @@
 @php
     $isSuperadminArea = request()->routeIs('superadmin.*')
         || request('area') === 'superadmin'
-        || (request()->routeIs('profile') && auth()->user()?->isSuperAdmin());
+        || (request()->routeIs('profile') && auth()->user()?->isSuperAdmin())
+        || (request()->routeIs('notifications') && auth()->user()?->isSuperAdmin());
 
     $navigationArea = $isSuperadminArea ? 'superadmin' : 'admin';
     $navigation = config("navigation.areas.{$navigationArea}");

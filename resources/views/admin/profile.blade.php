@@ -14,12 +14,12 @@
 <x-layouts::app :title="__('Profile')">
     <div class="space-y-6">
         @if (session('status') || session('photo_status') || session('password_status'))
-            <div class="rounded-md bg-[#e8f7e6] px-4 py-3 text-sm font-semibold text-[#004D26] ring-1 ring-[#c9e9c8]">
+            <div class="rounded-md bg-[#F2F4F7] px-4 py-3 text-sm font-semibold text-[#004D26] ring-1 ring-[#F2F4F7]">
                 {{ session('status') ?? session('photo_status') ?? session('password_status') }}
             </div>
         @endif
 
-        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8] lg:p-7">
+        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7] lg:p-7">
             <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                     <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Akun pengguna</p>
@@ -27,20 +27,20 @@
                     <p class="mt-2 max-w-2xl text-sm text-slate-500">Kelola informasi dasar akun, foto profil, dan password.</p>
                 </div>
 
-                <div class="rounded-md bg-[#f7fbf6] px-4 py-3 text-sm font-semibold text-[#004D26] ring-1 ring-[#d8edd8]">
+                <div class="rounded-md bg-[#F2F4F7] px-4 py-3 text-sm font-semibold text-[#004D26] ring-1 ring-[#F2F4F7]">
                     {{ $isSuperadminProfile ? 'Super Admin' : 'Admin' }}
                 </div>
             </div>
         </section>
 
         <div class="grid gap-6 xl:grid-cols-[360px_1fr]">
-            <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]" x-data="{ photoPreview: @js($photoUrl) }">
+            <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]" x-data="{ photoPreview: @js($photoUrl) }">
                 <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Foto profile</p>
 
                 <form method="POST" action="{{ route('profile.photo.update') }}" enctype="multipart/form-data" class="mt-6 flex flex-col items-center text-center">
                     @csrf
 
-                    <div class="grid h-28 w-28 shrink-0 place-items-center overflow-hidden rounded-md bg-[#e8f7e6] text-3xl font-bold text-[#004D26] ring-1 ring-[#c9e9c8]" style="height: 7rem; width: 7rem;">
+                    <div class="grid h-28 w-28 shrink-0 place-items-center overflow-hidden rounded-md bg-[#F2F4F7] text-3xl font-bold text-[#004D26] ring-1 ring-[#F2F4F7]" style="height: 7rem; width: 7rem;">
                         <img
                             x-cloak
                             x-show="photoPreview"
@@ -54,7 +54,7 @@
                     <p class="mt-4 text-lg font-semibold text-slate-900">{{ $name }}</p>
                     <p class="mt-1 text-sm text-slate-500">{{ $email }}</p>
 
-                    <label class="mt-5 inline-flex cursor-pointer rounded-md bg-white px-4 py-2 text-sm font-bold text-[#004D26] ring-1 ring-[#d8edd8] transition hover:bg-[#f7fbf6]">
+                    <label class="mt-5 inline-flex cursor-pointer rounded-md bg-white px-4 py-2 text-sm font-bold text-[#004D26] ring-1 ring-[#F2F4F7] transition hover:bg-[#F2F4F7]">
                         Ubah foto
                         <input
                             name="profile_photo"
@@ -80,7 +80,7 @@
             </section>
 
             <div class="space-y-6">
-                <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+                <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
                     <div>
                         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Informasi profile</p>
                         <h3 class="mt-2 text-xl font-semibold text-slate-900">Nama dan email</h3>
@@ -96,7 +96,7 @@
                                 name="name"
                                 type="text"
                                 value="{{ old('name', $name) }}"
-                                class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
+                                class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
                             @error('name')
                                 <p class="mt-2 text-sm font-semibold text-red-600">{{ $message }}</p>
                             @enderror
@@ -108,7 +108,7 @@
                                 name="email"
                                 type="email"
                                 value="{{ old('email', $email) }}"
-                                class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
+                                class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
                             @error('email')
                                 <p class="mt-2 text-sm font-semibold text-red-600">{{ $message }}</p>
                             @enderror
@@ -122,7 +122,7 @@
                     </form>
                 </section>
 
-                <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+                <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
                     <div>
                         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Keamanan</p>
                         <h3 class="mt-2 text-xl font-semibold text-slate-900">Change password</h3>
@@ -138,7 +138,7 @@
                                 name="current_password"
                                 type="password"
                                 placeholder="Masukkan password saat ini"
-                                class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
+                                class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
                             @error('current_password')
                                 <p class="mt-2 text-sm font-semibold text-red-600">{{ $message }}</p>
                             @enderror
@@ -150,7 +150,7 @@
                                 name="password"
                                 type="password"
                                 placeholder="Password baru"
-                                class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
+                                class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
                             @error('password')
                                 <p class="mt-2 text-sm font-semibold text-red-600">{{ $message }}</p>
                             @enderror
@@ -162,7 +162,7 @@
                                 name="password_confirmation"
                                 type="password"
                                 placeholder="Ulangi password baru"
-                                class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
+                                class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/25">
                         </div>
 
                         <div class="md:col-span-2 flex justify-end">

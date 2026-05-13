@@ -7,7 +7,7 @@
                 ['label' => 'Belum diisi', 'value' => '26', 'note' => 'Butuh reminder'],
                 ['label' => 'Terlambat', 'value' => '8', 'note' => 'Lewat deadline'],
             ] as $card)
-                <div class="rounded-md bg-white p-5 shadow-sm ring-1 ring-[#d8edd8]">
+                <div class="rounded-md bg-white p-5 shadow-sm ring-1 ring-[#F2F4F7]">
                     <p class="text-sm font-semibold text-slate-500">{{ $card['label'] }}</p>
                     <p class="mt-3 text-3xl font-semibold text-slate-900">{{ $card['value'] }}</p>
                     <p class="mt-2 text-xs font-semibold text-[#004D26]">{{ $card['note'] }}</p>
@@ -16,7 +16,7 @@
         </section>
 
         <section class="grid gap-6 xl:grid-cols-[1fr_380px]">
-            <div class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+            <div class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Tren per periode</p>
@@ -27,7 +27,7 @@
                     </a>
                 </div>
 
-                <div class="mt-8 flex h-64 items-end gap-3 border-b border-l border-[#d8edd8] px-4 pb-4">
+                <div class="mt-8 flex h-64 items-end gap-3 border-b border-l border-[#F2F4F7] px-4 pb-4">
                     @foreach (['h-24', 'h-36', 'h-32', 'h-44', 'h-40', 'h-48'] as $index => $height)
                         <div class="flex flex-1 flex-col items-center gap-2">
                             <div class="{{ $height }} w-full rounded-t-md bg-[#004D26]"></div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <aside class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+            <aside class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
                 <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Pusat kendali</p>
                 <div class="mt-5 space-y-3">
                     @foreach ([
@@ -46,7 +46,7 @@
                         ['Pengaturan Periode', 'superadmin.periods'],
                         ['Laporan & Export', 'superadmin.exports'],
                     ] as $item)
-                        <a href="{{ route($item[1]) }}" class="flex items-center justify-between rounded-md bg-[#f7fbf6] px-4 py-3 text-sm font-bold text-slate-800 ring-1 ring-[#d8edd8]" wire:navigate>
+                        <a href="{{ route($item[1]) }}" class="flex items-center justify-between rounded-md bg-[#F2F4F7] px-4 py-3 text-sm font-bold text-slate-800 ring-1 ring-[#F2F4F7]" wire:navigate>
                             {{ $item[0] }}
                             <span class="text-[#004D26]">-&gt;</span>
                         </a>

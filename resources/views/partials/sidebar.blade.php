@@ -1,7 +1,7 @@
 <aside
-    class="fixed inset-y-0 left-0 z-40 flex h-screen w-72 -translate-x-full flex-col border-r border-[#dcefd9] bg-white px-3 py-4 shadow-xl transition duration-200 dark:border-slate-800 dark:bg-slate-950 lg:sticky lg:top-0 lg:w-auto lg:translate-x-0 lg:shadow-sm"
+    class="fixed inset-y-0 left-0 z-40 flex h-screen w-72 -translate-x-full flex-col border-r border-[#F2F4F7] bg-white px-3 py-4 shadow-xl transition duration-200 dark:border-slate-800 dark:bg-slate-950 lg:sticky lg:top-0 lg:w-auto lg:translate-x-0 lg:shadow-sm"
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'">
-    <div class="flex items-center gap-3 border-b border-[#dcefd9] pb-4 dark:border-slate-800">
+    <div class="flex items-center gap-3 border-b border-[#F2F4F7] pb-4 dark:border-slate-800">
         <a href="{{ route($brandRoute) }}" class="flex min-w-0 flex-1 items-center gap-3" wire:navigate>
             <img
                 src="{{ asset('logo.png') }}"
@@ -33,13 +33,13 @@
                 @click="sidebarOpen = false"
                 @class([
                     'group flex min-h-11 items-center gap-3 rounded-md px-3 py-2 text-sm font-semibold transition',
-                    'bg-[#e8f7e6] text-[#004D26] ring-1 ring-[#c9e9c8]' => $isActive,
-                    'text-slate-600 hover:bg-[#f2faf0] hover:text-[#004D26]' => ! $isActive,
+                    'bg-[#F2F4F7] text-[#004D26] ring-1 ring-[#F2F4F7]' => $isActive,
+                    'text-slate-600 hover:bg-[#F2F4F7] hover:text-[#004D26]' => ! $isActive,
                 ])>
                 <span @class([
                     'grid h-8 w-8 shrink-0 place-items-center rounded-md transition',
                     'bg-[#004D26] text-white' => $isActive,
-                    'bg-white text-[#004D26] ring-1 ring-[#d8edd8] group-hover:bg-[#e8f7e6]' => ! $isActive,
+                    'bg-white text-[#004D26] ring-1 ring-[#F2F4F7] group-hover:bg-[#F2F4F7]' => ! $isActive,
                 ])>
                     <x-sidebar-icon :name="$item['icon']" class="h-4.5 w-4.5" />
                 </span>
@@ -48,7 +48,7 @@
         @endforeach
     </nav>
 
-    <div class="mt-4 border-t border-[#dcefd9] pt-4 dark:border-slate-800">
+    <div class="mt-4 border-t border-[#F2F4F7] pt-4 dark:border-slate-800">
         @php
             $user = auth()->user();
             $profilePhotoUrl = $user?->profilePhotoUrl();
@@ -61,18 +61,18 @@
             @csrf
 
             <div
-                class="flex items-center gap-2 rounded-md bg-white p-2 transition dark:bg-slate-900"
+                class="flex items-center gap-2 rounded-md bg-[#F8FAFC] p-2 ring-1 ring-[#E5E7EB] transition dark:bg-[#101827] dark:ring-slate-800"
                 :class="sidebarCollapsed ? 'lg:justify-center lg:bg-transparent lg:p-0 lg:ring-0 lg:dark:bg-transparent' : ''">
                 <a
                     href="{{ route('profile', ['area' => $profileArea]) }}"
                     @click="sidebarOpen = false"
                     title="{{ $userName }}"
-                    class="flex min-w-0 flex-1 items-center gap-3 rounded-md p-1.5 transition hover:bg-[#f7fbf6] dark:hover:bg-slate-800"
-                    :class="sidebarCollapsed ? 'lg:hidden' : ''"
+                    class="group/profile flex min-w-0 flex-1 items-center gap-3 rounded-md p-1.5 transition hover:bg-white dark:hover:bg-[#172033]"
+                    :class="sidebarCollapsed ? 'lg:flex-none lg:justify-center lg:p-0 lg:hover:bg-transparent lg:dark:hover:bg-transparent' : ''"
                     wire:navigate>
                     @if ($profilePhotoUrl)
                         <span
-                            class="relative block shrink-0 overflow-hidden rounded-full ring-1 ring-[#d8edd8] dark:ring-slate-700"
+                            class="relative block shrink-0 overflow-hidden rounded-full ring-1 ring-[#E5E7EB] transition group-hover/profile:ring-[#004D26]/30 dark:ring-slate-700 dark:group-hover/profile:ring-emerald-400/40"
                             style="width: 2.75rem; height: 2.75rem; border-radius: 9999px;">
                             <img
                                 src="{{ $profilePhotoUrl }}"
@@ -84,7 +84,7 @@
                         </span>
                     @else
                         <span
-                            class="grid shrink-0 place-items-center rounded-full bg-slate-900 text-sm font-bold text-white ring-1 ring-slate-800 dark:bg-emerald-500 dark:text-slate-950 dark:ring-emerald-400"
+                            class="grid shrink-0 place-items-center rounded-full bg-slate-900 text-sm font-bold text-white ring-1 ring-[#E5E7EB] transition group-hover/profile:ring-[#004D26]/30 dark:bg-slate-800 dark:text-emerald-100 dark:ring-slate-700 dark:group-hover/profile:ring-emerald-400/40"
                             style="width: 2.75rem; height: 2.75rem; border-radius: 9999px;">
                             {{ $userInitials }}
                         </span>
@@ -100,8 +100,8 @@
                     type="button"
                     @click="confirmLogoutOpen = true"
                     title="Logout"
-                    class="grid h-10 w-10 shrink-0 place-items-center rounded-md text-slate-500 ring-1 ring-[#d8edd8] transition hover:bg-[#f7fbf6] hover:text-[#004D26] dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800 dark:hover:text-emerald-300"
-                    :class="sidebarCollapsed ? 'lg:h-11 lg:w-11' : ''">
+                    class="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-white text-slate-500 ring-1 ring-[#E5E7EB] transition hover:bg-red-50 hover:text-red-600 dark:bg-slate-900 dark:text-slate-400 dark:ring-slate-700 dark:hover:bg-red-950/30 dark:hover:text-red-300"
+                    :class="sidebarCollapsed ? 'lg:hidden' : ''">
                     <x-sidebar-icon name="logout" class="h-4.5 w-4.5" />
                 </button>
             </div>
@@ -117,9 +117,9 @@
                         x-show="confirmLogoutOpen"
                         x-transition.scale.origin.center
                         @click.outside="confirmLogoutOpen = false"
-                        class="w-full max-w-sm rounded-md bg-white p-6 shadow-xl ring-1 ring-[#d8edd8] dark:bg-slate-900 dark:ring-slate-700">
+                        class="w-full max-w-sm rounded-md bg-white p-6 shadow-xl ring-1 ring-[#F2F4F7] dark:bg-slate-900 dark:ring-slate-700">
                         <div class="flex items-start gap-3">
-                            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-[#f7fbf6] text-[#004D26] ring-1 ring-[#d8edd8] dark:bg-slate-800 dark:text-emerald-300 dark:ring-slate-700">
+                            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-[#F2F4F7] text-[#004D26] ring-1 ring-[#F2F4F7] dark:bg-slate-800 dark:text-emerald-300 dark:ring-slate-700">
                                 <x-sidebar-icon name="logout" class="h-5 w-5" />
                             </span>
                             <div class="min-w-0">
@@ -132,7 +132,7 @@
                             <button
                                 type="button"
                                 @click="confirmLogoutOpen = false"
-                                class="rounded-md bg-white px-4 py-2 text-sm font-bold text-slate-600 ring-1 ring-[#d8edd8] transition hover:bg-[#f7fbf6] hover:text-[#004D26] dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800 dark:hover:text-emerald-300">
+                                class="rounded-md bg-white px-4 py-2 text-sm font-bold text-slate-600 ring-1 ring-[#F2F4F7] transition hover:bg-[#F2F4F7] hover:text-[#004D26] dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700 dark:hover:bg-slate-800 dark:hover:text-emerald-300">
                                 Batal
                             </button>
                             <button

@@ -6,11 +6,11 @@
     $label = str($status)->replace('-', ' ')->title();
 
     $classes = match ($status) {
-        'terkirim', 'aktif', 'selesai' => 'bg-[#e8f7e6] text-[#004D26] ring-[#c9e9c8]',
+        'terkirim', 'aktif', 'selesai' => 'bg-[#F2F4F7] text-[#004D26] ring-[#F2F4F7]',
         'terlambat', 'error', 'nonaktif' => 'bg-red-50 text-red-700 ring-red-200',
         'proses', 'draft' => 'bg-amber-50 text-amber-700 ring-amber-200',
         'belum' => 'bg-slate-100 text-slate-600 ring-slate-200',
-        default => 'bg-[#f2faf0] text-[#004D26] ring-[#d8edd8]',
+        default => 'bg-[#F2F4F7] text-[#004D26] ring-[#F2F4F7]',
     };
 @endphp
 

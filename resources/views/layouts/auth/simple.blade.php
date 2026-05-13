@@ -5,8 +5,8 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-[#004D26] font-sans text-slate-800 antialiased">
-    <main class="flex min-h-screen items-center justify-center px-5 py-10">
+<body class="min-h-screen bg-[#006341] font-sans text-slate-800 antialiased dark:bg-[#080d16] dark:text-slate-100">
+    <main class="flex min-h-screen items-center justify-center px-5 py-10 dark:bg-[linear-gradient(180deg,#080d16_0%,#0b141e_100%)]">
         <section class="w-full max-w-sm">
             <div class="mb-7 flex justify-center">
                 <a href="{{ route('home') }}" class="flex w-full items-center justify-center gap-3" wire:navigate>
@@ -15,7 +15,7 @@
                         alt="PT Lucky Print Abadi"
                         width="64"
                         height="64"
-                        class="h-16 w-16 shrink-0 rounded-full object-contain">
+                        class="h-16 w-16 shrink-0 rounded-full object-contain ring-1 ring-white/20 dark:ring-white/10">
                     <span class="w-[11.75rem] text-white">
                         <span class="block whitespace-nowrap text-3xl font-light leading-none tracking-wide">
                             <span class="font-black">LUCKY</span>TEX

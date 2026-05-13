@@ -15,11 +15,11 @@
         value="{{ $value }}"
         placeholder="{{ $placeholder }}"
         readonly
-        class="block w-full cursor-pointer rounded-md border border-[#d6ead5] bg-white px-4 py-3 pr-11 text-sm outline-none transition placeholder:text-slate-400 focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
+        class="block w-full cursor-pointer rounded-md border border-[#F2F4F7] bg-white px-4 py-3 pr-11 text-sm outline-none transition placeholder:text-slate-400 focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60 dark:border-slate-700 dark:bg-[#0b1220] dark:text-slate-100 dark:placeholder:text-slate-500 dark:focus:border-emerald-400 dark:focus:ring-emerald-400/25">
 
     <button
         type="button"
-        class="absolute inset-y-0 right-0 grid w-11 place-items-center text-[#004D26]"
+        class="absolute inset-y-0 right-0 grid w-11 place-items-center text-[#004D26] dark:text-emerald-300"
         @click="picker?.open()"
         aria-label="Pilih tanggal">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">

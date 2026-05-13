@@ -8,25 +8,25 @@
 
 <x-layouts::app :title="__('Manajemen Jenis Laporan')">
     <div class="grid gap-6 xl:grid-cols-[420px_1fr]">
-        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Template laporan</p>
             <h2 class="mt-2 text-2xl font-semibold text-slate-900">Buat jenis laporan</h2>
             <form class="mt-6 space-y-4">
                 <div>
                     <label for="report-name" class="mb-2 block text-sm font-semibold text-slate-700">Nama laporan</label>
-                    <input id="report-name" name="name" type="text" placeholder="Laporan Keuangan Bulanan" class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
+                    <input id="report-name" name="name" type="text" placeholder="Laporan Keuangan Bulanan" class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
                 </div>
                 <div>
                     <label for="report-description" class="mb-2 block text-sm font-semibold text-slate-700">Deskripsi</label>
-                    <textarea id="report-description" name="description" rows="4" class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60"></textarea>
+                    <textarea id="report-description" name="description" rows="4" class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60"></textarea>
                 </div>
                 <div class="grid grid-cols-2 gap-3">
-                    <label class="flex items-center gap-2 rounded-md bg-[#f7fbf6] px-4 py-3 text-sm font-semibold text-slate-600 ring-1 ring-[#d8edd8]">
-                        <input type="checkbox" name="is_active" checked class="h-4 w-4 rounded border-[#b9dcb8] text-[#004D26]">
+                    <label class="flex items-center gap-2 rounded-md bg-[#F2F4F7] px-4 py-3 text-sm font-semibold text-slate-600 ring-1 ring-[#F2F4F7]">
+                        <input type="checkbox" name="is_active" checked class="h-4 w-4 rounded border-[#F2F4F7] text-[#004D26]">
                         Aktif
                     </label>
-                    <label class="flex items-center gap-2 rounded-md bg-[#f7fbf6] px-4 py-3 text-sm font-semibold text-slate-600 ring-1 ring-[#d8edd8]">
-                        <input type="checkbox" name="is_required" checked class="h-4 w-4 rounded border-[#b9dcb8] text-[#004D26]">
+                    <label class="flex items-center gap-2 rounded-md bg-[#F2F4F7] px-4 py-3 text-sm font-semibold text-slate-600 ring-1 ring-[#F2F4F7]">
+                        <input type="checkbox" name="is_required" checked class="h-4 w-4 rounded border-[#F2F4F7] text-[#004D26]">
                         Wajib
                     </label>
                 </div>
@@ -34,14 +34,14 @@
             </form>
         </section>
 
-        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
             <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h2 class="text-2xl font-semibold text-slate-900">Daftar jenis laporan</h2>
-                <input type="search" name="search" placeholder="Cari template..." class="rounded-md border border-[#d6ead5] px-4 py-2 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
+                <input type="search" name="search" placeholder="Cari template..." class="rounded-md border border-[#F2F4F7] px-4 py-2 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
             </div>
-            <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#d8edd8]">
+            <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#F2F4F7]">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-[#f2faf0] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
+                    <thead class="bg-[#F2F4F7] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
                         <tr>
                             <th class="px-4 py-3">Nama</th>
                             <th class="px-4 py-3">Field</th>
@@ -49,7 +49,7 @@
                             <th class="px-4 py-3">Status</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-[#d8edd8]">
+                    <tbody class="divide-y divide-[#F2F4F7]">
                         @foreach ($reportTypeRows as $reportType)
                             <tr>
                                 <td class="px-4 py-3 font-semibold text-slate-800">{{ $reportType['name'] }}</td>

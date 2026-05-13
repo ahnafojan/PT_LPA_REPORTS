@@ -1,6 +1,6 @@
 <x-layouts::app :title="__('Laporan & Export')">
     <div class="grid gap-6 xl:grid-cols-[380px_1fr]">
-        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Filter export</p>
             <form class="mt-5 space-y-4">
                 <div>
@@ -23,11 +23,11 @@
             </form>
         </section>
 
-        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
             <h2 class="text-2xl font-semibold text-slate-900">Preview rekap</h2>
-            <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#d8edd8]">
+            <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#F2F4F7]">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-[#f2faf0] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
+                    <thead class="bg-[#F2F4F7] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
                         <tr>
                             <th class="px-4 py-3">Jenis</th>
                             <th class="px-4 py-3">Total</th>
@@ -35,7 +35,7 @@
                             <th class="px-4 py-3">Terlambat</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-[#d8edd8]">
+                    <tbody class="divide-y divide-[#F2F4F7]">
                         @foreach ([['Kehadiran', 28, 26, 2], ['Keuangan', 12, 11, 1], ['Produksi', 31, 30, 1]] as $row)
                             <tr>
                                 <td class="px-4 py-3 font-semibold text-slate-800">{{ $row[0] }}</td>

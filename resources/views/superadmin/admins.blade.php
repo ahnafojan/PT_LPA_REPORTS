@@ -10,11 +10,11 @@
 
 <x-layouts::app :title="__('Manajemen Admin')">
     <div class="grid gap-6 xl:grid-cols-[380px_1fr]">
-        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
             <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Akun admin</p>
             <form class="mt-5 space-y-4">
-                <input type="text" placeholder="Nama admin" class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
-                <input type="email" placeholder="Email" class="w-full rounded-md border border-[#d6ead5] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
+                <input type="text" placeholder="Nama admin" class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
+                <input type="email" placeholder="Email" class="w-full rounded-md border border-[#F2F4F7] px-4 py-3 text-sm outline-none focus:border-[#004D26] focus:ring-2 focus:ring-[#004D26]/60">
                 <x-alpine-dropdown
                     name="akses_laporan"
                     :options="$accessOptions" />
@@ -22,11 +22,11 @@
             </form>
         </section>
 
-        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+        <section class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
             <h2 class="text-2xl font-semibold text-slate-900">Daftar admin</h2>
-            <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#d8edd8]">
+            <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#F2F4F7]">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-[#f2faf0] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
+                    <thead class="bg-[#F2F4F7] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
                         <tr>
                             <th class="px-4 py-3">Nama</th>
                             <th class="px-4 py-3">Akses</th>
@@ -34,7 +34,7 @@
                             <th class="px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-[#d8edd8]">
+                    <tbody class="divide-y divide-[#F2F4F7]">
                         @foreach ($adminRows as $admin)
                             <tr>
                                 <td class="px-4 py-3 font-semibold text-slate-800">{{ $admin['name'] }}</td>

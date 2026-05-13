@@ -13,7 +13,7 @@
 }
 
 .flatpickr-calendar {
-    border: 1px solid #d8edd8;
+    border: 1px solid #F2F4F7;
     border-radius: 0.375rem;
     box-shadow: 0 18px 40px rgb(15 23 42 / 0.16);
     font-family: Poppins, ui-sans-serif, system-ui, sans-serif;
@@ -33,6 +33,82 @@
 
 .flatpickr-monthSelect-month.selected {
     background: #004D26;
+}
+
+.dark .flatpickr-calendar {
+    border-color: #263244;
+    background: #101827;
+    box-shadow: 0 24px 48px rgb(0 0 0 / 0.38);
+    color: #e5edf7;
+}
+
+.dark .flatpickr-calendar::before,
+.dark .flatpickr-calendar::after {
+    border-bottom-color: #101827;
+}
+
+.dark .flatpickr-months,
+.dark .flatpickr-weekdays,
+.dark .flatpickr-current-month,
+.dark .flatpickr-current-month input.cur-year,
+.dark .flatpickr-current-month .flatpickr-monthDropdown-months,
+.dark .flatpickr-weekday {
+    background: #101827;
+    color: #e5edf7;
+}
+
+.dark .flatpickr-current-month input.cur-year,
+.dark .flatpickr-current-month .numInputWrapper span {
+    border-color: #263244;
+}
+
+.dark .flatpickr-months .flatpickr-prev-month,
+.dark .flatpickr-months .flatpickr-next-month {
+    color: #94a3b8;
+    fill: #94a3b8;
+}
+
+.dark .flatpickr-months .flatpickr-prev-month:hover,
+.dark .flatpickr-months .flatpickr-next-month:hover {
+    color: #34d399;
+    fill: #34d399;
+}
+
+.dark .flatpickr-day,
+.dark .flatpickr-monthSelect-month {
+    color: #cbd5e1;
+}
+
+.dark .flatpickr-day:hover,
+.dark .flatpickr-day:focus,
+.dark .flatpickr-monthSelect-month:hover,
+.dark .flatpickr-monthSelect-month:focus {
+    border-color: #263244;
+    background: #172033;
+    color: #f8fafc;
+}
+
+.dark .flatpickr-day.today {
+    border-color: #34d399;
+    color: #34d399;
+}
+
+.dark .flatpickr-day.selected,
+.dark .flatpickr-day.startRange,
+.dark .flatpickr-day.endRange,
+.dark .flatpickr-day.selected:hover,
+.dark .flatpickr-monthSelect-month.selected,
+.dark .flatpickr-monthSelect-month.selected:hover {
+    border-color: #059669;
+    background: #059669;
+    color: #ecfeff;
+}
+
+.dark .flatpickr-day.prevMonthDay,
+.dark .flatpickr-day.nextMonthDay,
+.dark .flatpickr-day.flatpickr-disabled,
+.dark .flatpickr-day.flatpickr-disabled:hover {
+    color: #64748b;
 }
 
 @theme {
@@ -94,13 +170,11 @@ select:focus[data-flux-control] {
     }
 
     .dark body {
-        background:
-            radial-gradient(circle at 20% 0%, rgb(6 78 59 / 0.18), transparent 28rem),
-            linear-gradient(180deg, #070b14 0%, #0a0f1c 100%);
+        background: #080d16;
     }
 
     .dark .bg-white {
-        background-color: #111827 !important;
+        background-color: #101827 !important;
     }
 
     .dark aside.bg-white {
@@ -108,17 +182,19 @@ select:focus[data-flux-control] {
     }
 
     .dark header[class*="bg-white"] {
-        background-color: rgb(7 11 20 / 0.88) !important;
+        background-color: rgb(7 11 20 / 0.92) !important;
     }
 
-    .dark [class~="bg-[#f7fbf6]"],
-    .dark [class~="bg-[#eef8ec]"],
-    .dark [class~="bg-[#f2faf0]"] {
-        background-color: #162033 !important;
+    .dark [class~="bg-[#F2F4F7]"] {
+        background-color: #172033 !important;
     }
 
-    .dark [class~="bg-[#e8f7e6]"] {
-        background-color: #123629 !important;
+    .dark [class~="hover:bg-[#F2F4F7]"]:hover {
+        background-color: #1b2638 !important;
+    }
+
+    .dark .group:hover [class~="group-hover:bg-[#F2F4F7]"] {
+        background-color: #1b2638 !important;
     }
 
     .dark [class~="bg-[#004D26]"] {
@@ -156,7 +232,7 @@ select:focus[data-flux-control] {
 
     .dark [class~="text-[#004D26]"],
     .dark [class~="text-[#1e6b3a]"] {
-        color: #5eead4 !important;
+        color: #34d399 !important;
     }
 
     .dark .text-amber-700 {
@@ -171,15 +247,12 @@ select:focus[data-flux-control] {
         color: #ecfeff !important;
     }
 
-    .dark [class~="border-[#dcefd9]"],
-    .dark [class~="border-[#e4f1e2]"],
-    .dark [class~="border-[#d6ead5]"] {
-        border-color: #26364f !important;
+    .dark [class~="border-[#F2F4F7]"] {
+        border-color: #263244 !important;
     }
 
-    .dark [class~="ring-[#d8edd8]"],
-    .dark [class~="ring-[#c9e9c8]"] {
-        --tw-ring-color: #26364f !important;
+    .dark [class~="ring-[#F2F4F7]"] {
+        --tw-ring-color: #263244 !important;
     }
 
     .dark .ring-slate-200,
@@ -188,8 +261,8 @@ select:focus[data-flux-control] {
         --tw-ring-color: #334155 !important;
     }
 
-    .dark .divide-\[\#d8edd8\] > :not(:last-child) {
-        border-color: #26364f !important;
+    .dark .divide-\[\#F2F4F7\] > :not(:last-child) {
+        border-color: #263244 !important;
     }
 
     .dark .shadow-sm {

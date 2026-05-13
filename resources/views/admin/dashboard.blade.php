@@ -6,7 +6,7 @@
             ['label' => 'Sudah selesai', 'value' => '3', 'note' => 'Periode berjalan'],
             ['label' => 'Belum diisi', 'value' => '2', 'note' => 'Perlu tindak lanjut'],
             ] as $card)
-            <div class="rounded-md bg-white p-5 shadow-sm ring-1 ring-[#d8edd8]">
+            <div class="rounded-md bg-white p-5 shadow-sm ring-1 ring-[#F2F4F7]">
                 <p class="text-sm font-semibold text-slate-500">{{ $card['label'] }}</p>
                 <p class="mt-3 text-3xl font-semibold text-slate-900">{{ $card['value'] }}</p>
                 <p class="mt-2 text-xs font-semibold text-[#004D26]">{{ $card['note'] }}</p>
@@ -15,7 +15,7 @@
         </section>
 
         <section class="grid gap-6 xl:grid-cols-[1fr_360px]">
-            <div class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+            <div class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
                 <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                         <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Tugas laporan</p>
@@ -26,16 +26,16 @@
                     </a>
                 </div>
 
-                <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#d8edd8]">
+                <div class="mt-6 overflow-hidden rounded-md ring-1 ring-[#F2F4F7]">
                     <table class="w-full text-left text-sm">
-                        <thead class="bg-[#f2faf0] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
+                        <thead class="bg-[#F2F4F7] text-xs font-semibold uppercase tracking-[0.12em] text-[#004D26]">
                             <tr>
                                 <th class="px-4 py-3">Jenis laporan</th>
                                 <th class="px-4 py-3">Deadline</th>
                                 <th class="px-4 py-3">Status</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-[#d8edd8]">
+                        <tbody class="divide-y divide-[#F2F4F7]">
                             @foreach ([
                             ['Laporan Keuangan Bulanan', '10 Mei 2026', 'draft'],
                             ['Laporan Kehadiran', 'Hari ini 17:00', 'belum'],
@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <aside class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#d8edd8]">
+            <aside class="rounded-md bg-white p-6 shadow-sm ring-1 ring-[#F2F4F7]">
                 <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#004D26]">Deadline dekat</p>
                 <div class="mt-5 space-y-3">
                     @foreach ([
@@ -61,7 +61,7 @@
                     ['Pemakaian Bahan Bakar', '18:00'],
                     ['Laporan Produksi', '20:00'],
                     ] as $item)
-                    <div class="flex items-center justify-between rounded-md bg-[#f7fbf6] px-4 py-3 ring-1 ring-[#d8edd8]">
+                    <div class="flex items-center justify-between rounded-md bg-[#F2F4F7] px-4 py-3 ring-1 ring-[#F2F4F7]">
                         <p class="text-sm font-bold text-slate-800">{{ $item[0] }}</p>
                         <p class="text-xs font-semibold text-[#004D26]">{{ $item[1] }}</p>
                     </div>

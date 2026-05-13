@@ -11,7 +11,6 @@ return [
                 ['label' => 'Input Laporan', 'route' => 'reports.input', 'active' => 'reports.input', 'icon' => 'input'],
                 ['label' => 'Daftar Laporan Saya', 'route' => 'reports.mine', 'active' => 'reports.mine', 'icon' => 'list'],
                 ['label' => 'Riwayat Laporan', 'route' => 'reports.history', 'active' => 'reports.history', 'icon' => 'archive'],
-                ['label' => 'Notifikasi', 'route' => 'notifications', 'active' => 'notifications', 'icon' => 'bell'],
                 ['label' => 'Laporan & Export', 'route' => 'reports.export', 'active' => 'reports.export', 'icon' => 'export'],
             ],
         ],
